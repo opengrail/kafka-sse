@@ -1,6 +1,6 @@
-(ns kafka-sse.core-test
+(ns com.opengrail.kafka-sse.core-test
   (:require [clojure.test :refer :all]
-            [kafka-sse-clj.core :refer :all]))
+            [com.opengrail.kafka-sse.core :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."

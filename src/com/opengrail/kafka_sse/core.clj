@@ -1,4 +1,4 @@
-(ns kafka-sse.core
+(ns com.opengrail.kafka-sse.core
   (:require [clojure.core.async :as async :refer [>! <! go-loop chan close! timeout]]
             [clojure.string :as str]
             [environ.core :refer [env]])
@@ -10,7 +10,7 @@
 
 (def CONSUME_LATEST -1)
 
-(defn env-or-default [env-var-name default]
+(defn- env-or-default [env-var-name default]
   (if-let [env-var (env env-var-name)] env-var default))
 
 (def ^:private poll-timeout-millis (env-or-default :sse-proxy-poll-timeout-millis 100))

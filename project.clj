@@ -1,4 +1,4 @@
-(defproject com.opengrail/kafka-sse-clj "0.1.0-SNAPSHOT"
+(defproject com.opengrail/kafka-sse-clj "0.1.0"
   :description "Provide HTML5 Server Sent Events for any Kafka topic"
   :url "https://github.com/raymcdermott/kafka-sse-clj"
   :license {:name "Eclipse Public License"
