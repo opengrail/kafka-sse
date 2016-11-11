@@ -26,10 +26,10 @@
 
 (def ^:private kafka-brokers (or brokers-from-env local-brokers))
 
-(def ^:private marshalling-config {"key.serializer"     StringSerializer
-                                   "value.serializer"   StringSerializer
-                                   "key.deserializer"   StringDeserializer
-                                   "value.deserializer" StringDeserializer})
+(def ^:private marshalling-config {"key.serializer"     (.getCanonicalName StringSerializer)
+                                   "value.serializer"   (.getCanonicalName StringSerializer)
+                                   "key.deserializer"   (.getCanonicalName StringDeserializer)
+                                   "value.deserializer" (.getCanonicalName StringDeserializer)})
 
 (def ^:private autocommit-config {"enable.auto.commit" "false"})
 
@@ -50,7 +50,7 @@
    {:pre [(or (= offset CONSUME_LATEST) (>= offset 0))]}
    (let [consumer-group {"group.id" (str proxy-group "-" (rand))}
          merged-options (merge options autocommit-config consumer-group)
-         consumer (KafkaConsumer. (merge brokers marshallers merged-options))]
+         consumer (KafkaConsumer. (merge marshallers merged-options brokers))]
 
      (if (= offset CONSUME_LATEST)
        (.subscribe consumer [topic-name])
