@@ -26,9 +26,7 @@
 
 (def ^:private kafka-brokers (or brokers-from-env local-brokers))
 
-(def ^:private marshalling-config {"key.serializer"     (.getCanonicalName StringSerializer)
-                                   "value.serializer"   (.getCanonicalName StringSerializer)
-                                   "key.deserializer"   (.getCanonicalName StringDeserializer)
+(def ^:private marshalling-config {"key.deserializer"   (.getCanonicalName StringDeserializer)
                                    "value.deserializer" (.getCanonicalName StringDeserializer)})
 
 (def ^:private autocommit-config {"enable.auto.commit" "false"})
