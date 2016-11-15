@@ -10,6 +10,5 @@
                  [aleph "0.4.1"]
                  [compojure "1.5.1"]
                  [environ "1.1.0"]
-                 [org.apache.kafka/kafka_2.10 "0.10.0.1"]
-                 [org.apache.kafka/kafka-clients "0.10.0.1"]]
+                 [org.apache.kafka/kafka-clients "0.9.0.1"]]
   :pedantic? :warn)

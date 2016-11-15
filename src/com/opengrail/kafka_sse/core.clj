@@ -2,7 +2,7 @@
   (:require [clojure.core.async :as async :refer [>! <! go-loop chan close! timeout]]
             [clojure.string :as str]
             [environ.core :refer [env]])
-  (:import (org.apache.kafka.common.serialization StringSerializer StringDeserializer)
+  (:import (org.apache.kafka.common.serialization StringDeserializer)
            (org.apache.kafka.clients.consumer KafkaConsumer)
            (org.apache.kafka.common TopicPartition)
            (java.util UUID)
