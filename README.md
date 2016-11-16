@@ -13,7 +13,7 @@ The defaults can be influenced by environment variables.
 #Dependency
 
 ```clojure
-[com.opengrail/kafka-sse-clj "0.1.2"]
+[com.opengrail/kafka-sse-clj "0.1.3"]
 ```
 
 #Usage
