@@ -58,13 +58,12 @@
 
      consumer)))
 
-
 (defn consumer-record->sse
   "Convert a Kakfa Java API ConsumerRecord to the HTML5 EventSource format"
   [consumer-record]
   (str "id: " (.offset consumer-record) "\n"
-       "event: " (.key consumer-record) "\n"
-       "data: " (.value consumer-record) "\n\n"))
+       "event: " (or (.key consumer-record) "") "\n"
+       "data: " (or (.value consumer-record) "") "\n\n"))
 
 (defn name-matches?
   "Match name with the regexes in a comma separated string"
