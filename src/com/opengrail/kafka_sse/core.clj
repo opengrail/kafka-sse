@@ -2,7 +2,7 @@
   (:require [clojure.core.async :as async :refer [>! <! go-loop chan close! timeout]]
             [clojure.string :as str]
             [environ.core :refer [env]])
-  (:import (org.apache.kafka.common.serialization StringSerializer StringDeserializer)
+  (:import (org.apache.kafka.common.serialization StringDeserializer)
            (org.apache.kafka.clients.consumer KafkaConsumer)
            (org.apache.kafka.common TopicPartition)
            (java.util UUID)
@@ -75,14 +75,15 @@
 
 (defn kafka-consumer->sse-ch
   "Creates a channel with the transducer to read from the consumer."
+
   ([consumer transducer]
    (let [kafka-ch (chan buffer-size transducer)]
 
      (go-loop []
-              (if-let [records (.poll consumer poll-timeout-millis)]
-                (doseq [record records]
-                  (>! kafka-ch record)))
-              (recur))
+       (if-let [records (.poll consumer poll-timeout-millis)]
+         (doseq [record records]
+           (>! kafka-ch record)))
+       (recur))
 
      kafka-ch))
 
@@ -94,9 +95,9 @@
            kafka-ch (kafka-consumer->sse-ch consumer transducer)]
 
        (go-loop []
-                (let [_ (<! (timeout keep-alive-millis))]
-                  (>! keep-alive-ch ":\n")
-                  (recur)))
+         (let [_ (<! (timeout keep-alive-millis))]
+           (>! keep-alive-ch ":\n")
+           (recur)))
 
        (async/merge [kafka-ch keep-alive-ch])))))
 
